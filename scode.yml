@@ -1,0 +1,163 @@
+group: S
+number: any
+description: Retrieve sensor data
+parameters:
+- group: R
+  type: str
+  description: Which parameters should be returned (a list of VNU)
+  required: false
+response:
+- group: S
+  number: any
+  description: Echoes the sensor values
+  parameters:
+  - group: V
+    type: f32
+    description: Value of the sensor
+    required: false
+  - group: N
+    type: str
+    description: Name of the sensor
+    required: false
+  - group: U
+    type: str
+    description: Unit of the sensor value
+    required: false
+
+group: M
+number: 1
+description: Broadcast all sensors
+parameters:
+- group: R
+  type: str
+  description: Which parameters should be returned (a list of VNU)
+  required: false
+response:
+- group: S
+  number: any
+  description: Echoes the sensor values
+  parameters:
+  - group: V
+    type: f32
+    description: Value of the sensor
+    required: false
+  - group: N
+    type: str
+    description: Name of the sensor
+    required: false
+  - group: U
+    type: str
+    description: Unit of the sensor value
+    required: false
+
+group: M
+number: 10
+description: Retrieve or set the clock
+parameters:
+- group: D
+  type: i32
+  description: Days since 1984
+  required: false
+- group: T
+  type: i32
+  description: Milliseconds since midnight
+  required: false
+response:
+- group: M
+  number: 10
+  parameters:
+  - group: D
+    type: i32
+    description: Days since 1984
+    required: true
+  - group: T
+    type: i32
+    description: Milliseconds since midnight
+    required: true
+
+group: M
+number: 11
+description: Get the number of seconds since boot
+response:
+- group: M
+  number: 11
+  parameters:
+  - group: S
+    type: i32
+    description: Seconds since boot
+    required: true
+
+group: M
+number: 20
+description: Software Reset
+
+group: M
+number: 98
+description: Revert settings to EEPROM values
+
+group: M
+number: 99
+description: Reset settings to factory defaults 
+
+group: M
+number: 100
+description: Save settings to EEPROM
+
+group: M
+number: 101
+description: Set or receive min_broadcast_interval
+parameters:
+- group: V
+  type: i32
+  description: min_broadcast_interval value
+  required: false
+response:
+- group: M
+  number: 101
+  parameters:
+  - group: V
+    type: i32
+    description: min_broadcast_interval value
+    required: true
+
+group: M
+number: 102
+description: Set or receive sensor_broadcast_bitmap
+parameters:
+- group: E
+  type: u8
+  description: Enable the sensor to broadcast when it changes
+  many: true
+  required: false
+- group: D
+  type: u8
+  description: Disable the sensor to broadcast 
+  many: true
+  required: false
+- group: V
+  type: i64
+  description: Bitmap value as a whole
+  required: false
+response:
+- group: M
+  number: 102
+  parameters:
+  - group: E
+    type: u8
+    description: The sensor is enabled to broadcast when it changes
+    many: true
+
+group: M
+number: 103
+description: Set or receive anemometer k value for calibration
+parameters:
+- group: V
+  type: float
+  description: anemometer k value
+response:
+- group: M
+  number: 103
+  parameters:
+  - group: V
+    type: float
+    description: anemometer k value
